@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://co2o2cir803m7"]
+
+[ext_resource type="Texture2D" uid="uid://hpotgv72lktn" path="res://sprites/space-invaders-mothership.png" id="1_acquu"]
+[ext_resource type="Script" path="res://scripts/mothership.gd" id="1_c62yr"]
+[ext_resource type="PackedScene" uid="uid://bmsl7amppjk2g" path="res://enemy.tscn" id="1_n1not"]
+
+[node name="Mothership" instance=ExtResource("1_n1not")]
+script = ExtResource("1_c62yr")
+score_modifier = 500
+speed = 15
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("1_acquu")

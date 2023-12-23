@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://0s3ar368cbd4"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_nk1tq"]
+[ext_resource type="PackedScene" uid="uid://jchvdo61ag5x" path="res://spaceship.tscn" id="1_ob7sc"]
+[ext_resource type="FontFile" uid="uid://d2hmrjpncbuco" path="res://fonts/ThaleahFat.ttf" id="3_mpxj1"]
+[ext_resource type="PackedScene" uid="uid://co2o2cir803m7" path="res://mothership.tscn" id="4_br6nw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fsxh"]
+size = Vector2(160, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r4keo"]
+size = Vector2(16, 120)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_nk1tq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(80, 60)
+
+[node name="Spaceship" parent="." instance=ExtResource("1_ob7sc")]
+position = Vector2(80, 104)
+
+[node name="BulletDestruction" type="Area2D" parent="."]
+position = Vector2(8, -8)
+collision_layer = 17
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletDestruction"]
+position = Vector2(72, 0)
+shape = SubResource("RectangleShape2D_7fsxh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BulletDestruction"]
+position = Vector2(72, 136)
+shape = SubResource("RectangleShape2D_7fsxh")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-8, 60)
+shape = SubResource("RectangleShape2D_r4keo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(168, 60)
+shape = SubResource("RectangleShape2D_r4keo")
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="PlayerScore" type="Label" parent="."]
+offset_top = 112.0
+offset_right = 32.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("3_mpxj1")
+theme_override_font_sizes/font_size = 10
+text = "000"
+
+[node name="Control" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 64.0
+offset_bottom = 120.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 8.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Mothership" parent="." instance=ExtResource("4_br6nw")]
+position = Vector2(8, 8)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

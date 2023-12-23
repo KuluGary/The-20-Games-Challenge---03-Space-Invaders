@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://jchvdo61ag5x"]
+
+[ext_resource type="Script" path="res://scripts/spaceship.gd" id="1_0rbyo"]
+[ext_resource type="Texture2D" uid="uid://brhrse4mntbnh" path="res://sprites/space-invaders-ship.png" id="1_2tx6y"]
+[ext_resource type="AudioStream" uid="uid://cobg3koiighok" path="res://sfx/Click.wav" id="3_3cipx"]
+[ext_resource type="AudioStream" uid="uid://b28hngmlxjf5d" path="res://sfx/Crunch.wav" id="4_wuo7k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjqut"]
+size = Vector2(16, 16)
+
+[node name="Spaceship" type="CharacterBody2D" groups=["player"]]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_0rbyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sjqut")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2tx6y")
+
+[node name="Sfx" type="Node2D" parent="."]
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="Sfx"]
+stream = ExtResource("3_3cipx")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Sfx"]
+process_mode = 1
+stream = ExtResource("4_wuo7k")

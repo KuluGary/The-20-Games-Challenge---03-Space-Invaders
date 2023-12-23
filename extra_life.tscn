@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d383oiffty8q1"]
+
+[ext_resource type="Texture2D" uid="uid://brhrse4mntbnh" path="res://sprites/space-invaders-ship.png" id="1_w2ly0"]
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_w2ly0")
+offset = Vector2(-8, 8)
